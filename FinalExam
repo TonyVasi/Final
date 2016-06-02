@@ -1,0 +1,91 @@
+public interface Flyer
+{
+    int setAirSpeed(int airSpeedMPH);
+    
+    int setAltimeter(int elevationPerMinute);
+    
+    void fly();
+    
+}
+
+
+public class Flying implements Flyer
+{
+    String flyerName;
+    double traveled;
+    int altitude; 
+    int airSpeed;
+    int elevationGain;
+    public void fly()
+    {
+        double spm = airSpeed;
+        spm = spm/60;
+        traveled += spm;
+        altitude += elevationGain; 
+    }
+    public int setAltimeter(int elevationPerMinute)
+    {
+        elevationGain = elevationPerMinute;
+        return elevationGain;
+    }
+    public int setAirSpeed(int airSpeedMPH)
+    {
+        airSpeed = airSpeedMPH;
+        return airSpeed;
+    }
+    public Flying()
+    {
+        flyerName = "UFO";
+        traveled = 0;
+        altitude = 0;
+        airSpeed = 0;
+        elevationGain = 0;
+    }
+    public Flying(String name, int speed, int gain)
+    {
+        flyerName = name;
+        traveled = 0;
+        altitude = 0;
+        airSpeed = speed;
+        elevationGain = gain;
+    }
+    public String toString()
+    {
+        System.out.println("Name: '" + flyerName + "' | Altidtude: " + altitude + " feet | Distance Traveled: " + traveled + " miles.");
+        return "Don't worry about it!";
+    }
+}
+
+
+public class Test
+{
+    public static void main(String args[])
+    {
+        Flying bird = new Flying("Bird", 10, 3);
+        Flying airPlane = new Flying("Air Plane", 450, 50);
+        Flying jetPlane = new Flying("jet Plane", 1000, 120);
+        Flying missle = new Flying("Missle", 2500, 800);
+        Flying superMan = new Flying("Super Man", 3500, 500);
+        bird.toString();
+        airPlane.toString();
+        jetPlane.toString();
+        missle.toString();
+        superMan.toString();
+        for(int j = 0; j<6; j++)
+        {
+            for(int i = 0; i<5; i++)
+            {
+                bird.fly();
+                airPlane.fly();
+                jetPlane.fly();
+                missle.fly();
+                superMan.fly();
+            }
+            bird.toString();
+            airPlane.toString();
+            jetPlane.toString();
+            missle.toString();
+            superMan.toString();
+        }
+    }
+}
